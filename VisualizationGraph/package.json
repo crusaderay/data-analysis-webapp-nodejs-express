@@ -1,0 +1,10 @@
+{
+  "name": "visualization-graph",
+  "version": "0.0.0",
+  "dependencies": {
+    "express": "*",
+    "d3":"*",
+    "connect":"*",
+    "mongoose":"*"    
+  }
+}
