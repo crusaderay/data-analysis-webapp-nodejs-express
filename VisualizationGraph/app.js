@@ -28,7 +28,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
 //require for passport
-app.use(session({ secret: 'keyboard cat'}));
+app.use(session({
+	secret: 'I love being a coder',
+  	resave: true,
+  	saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flashing messages stored in the session
