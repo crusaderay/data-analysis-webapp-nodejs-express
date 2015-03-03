@@ -15,6 +15,10 @@ module.exports = function(app, passport){
 	app.get('/piechart', function(req,res){
 		res.sendFile(__dirname + '/views/piechart.html');
 	});
+
+	app.get('/prize', function(req,res){
+		res.sendFile(__dirname + '/views/prize.html');
+	});
 	/******************* normal routes end ****************/
 
 	/******************* authenticate routes start ****************/

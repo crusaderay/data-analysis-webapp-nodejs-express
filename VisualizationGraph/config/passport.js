@@ -16,15 +16,15 @@ module.exports = function(passport) {
   	/**********LOCAL LOGIN*************/
   	passport.use('local-login', new LocalStrategy({
   		//override default
-  		usernameField: 'username',
+  		usernameField: 'email',
   		passwordField: 'password',
   		passReqToCallback :true
 
   		},
-  		function(req,username, password, done) {
+  		function(req, email, password, done) {
   			//async
   			process.nextTick(function() {
-  				User.findOne({'username':username}, function(err, user) {
+  				User.findOne({'email':email}, function(err, user) {
   					if(err) {
   						return done(err);
   					}
@@ -45,15 +45,15 @@ module.exports = function(passport) {
   	/*****************LOCAL SIGNUP********************/
   	passport.use('local-signup', new LocalStrategy({
   		//override default
-  		usernameField : 'username',
+  		usernameField : 'email',
   		passwordField : 'password',
   		passReqToCallback : true
   		},
-  		function(req, username, password, done) {
+  		function(req, email, password, done) {
   			//async
   			process.nextTick(function() {
   				if(!req.user) {
-  					User.findOne({'username':username}, function(err, user) {
+  					User.findOne({'email':email}, function(err, user) {
   						if(err) {
   							return done(err);
   						}
@@ -62,7 +62,8 @@ module.exports = function(passport) {
   						}
   						else {
   							var newUser = new User();
-  							newUser.username = username;
+                            //newUser.first_name = req.body.first_name;
+  							newUser.email = req.body.email;
   							newUser.password = newUser.generateHash(password);
 
 	  						//save to mongodb
