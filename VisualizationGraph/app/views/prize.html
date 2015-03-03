@@ -23,7 +23,39 @@
 							<div class="blank"></div>
 							<button class="btn btn-warning btn-block btn-lg" id="prize"> Get Prize! </button>
 						</div>
-						<div class="col-xs-12 col-sm-6 col-md-6" id="result">
+						<div class="col-xs-12 col-sm-6 col-md-6 hidden" id="result">
+							<p id="message"></p>
+							<form id="sendPrizeInfo"> 
+								<div class="row" id="name"> 
+                        			<div class="col-xs-12 col-sm-6 col-md-6"> 
+                            			<div class="form-group"> 
+                                			<input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name"> 
+                            			</div> 
+                        			</div> 
+                        			<div class="col-xs-12 col-sm-6 col-md-6"> 
+                            			<div class="form-group"> 
+                            				<input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name"> 
+                            			</div> 
+                        			</div> 
+                    			</div> 
+                    			<div class="form-group"> 
+                        			<input type="email" name="email" id="email" class="form-control" placeholder="Email Address"> 
+                    			</div> 
+                    			<div class="form-group"> 
+                        			<input type="phone_number" name="phone_number" id="phone_number" class="form-control" placeholder="Phone Number"> 
+                    			</div> 
+                    			<div class="form-group"> 
+                        			<input type="text" name="residence" id="residence" class="form-control" placeholder="Residence"> 
+                    			</div> 
+                   				<div class="row"> 
+                    				<div class="col-xs-12 col-md-6"> 
+                        				<button class="btn btn-primary btn-block" id="send">Send</button> 
+                    				</div> 
+                    				<div class="col-xs-12 col-md-6"> 
+                        				<a href="/" class="btn btn-danger btn-block">Cancel</a> 
+                   					</div> 
+                				</div> 
+							</form>
 						</div>
 					</div>
 				</div>

@@ -1,3 +1,5 @@
+var emailService = require('../config/emailService')
+
 module.exports = function(app, passport){
 	/******************* normal routes start ****************/
 	app.get('/', function(req,res){
@@ -18,6 +20,10 @@ module.exports = function(app, passport){
 
 	app.get('/prize', function(req,res){
 		res.sendFile(__dirname + '/views/prize.html');
+	});
+
+	app.post('/sendEmail', function(req,res){
+		emailService.sendPrizeEmail(req.body.first_name, req.body.last_name, req.body.phone_number,req.body.sender_email, req.body.residence);
 	});
 	/******************* normal routes end ****************/
 

@@ -9,16 +9,30 @@ jQuery(function($){
 	});
 	$('#sendPrizeInfo').submit(function(e) {
 		e.preventDefault();
-		var first_name=$('#first_name');
-		var last_name=$('#last_name');
-		var sender_email=$('#email');
-		var phone_number=$('#phone_number');
-		var residence=$('#residence');
-		console.log(sender_email);
-		if(first_name.length <2 || last_name) {
-
+		var first_name=$('#first_name').val();
+		var last_name=$('#last_name').val();
+		var sender_email=$('#email').val();
+		var phone_number=$('#phone_number').val();
+		var residence=$('#residence').val();
+		if(first_name.length <2 || last_name.length<2) {
+			console.log('name should be at least 2 characters');
 		}
+		if(phone_number.length !== 10) {
+			console.log('please enter valid phone number.');
+		}
+		$.ajax({
+			url: '/sendEmail',
+			type:'POST',
+			data: {'first_name': first_name, 'last_name': last_name, 'sender_email': sender_email, 'phone_number':phone_number, 'residence':residence},
+			cache:false,
+			success: function(data) {
+				console.log('Success: ' + jQuery.parseJSON(data));
+			},
+			error: function(xhr,status,error) {
+				console.log('Fail: ' + error.message);
+			},
 
+		});
 	});
 });
 
@@ -48,38 +62,8 @@ function getPrizeRandomly(prizes) {
 }
 
 function appendResultForm(random) {
-	$('#result').append('<p>Congraduations! You have earned <strong>' + random + '</strong>. <br>' +'Please \
+	$('#result').removeClass('hidden');
+	$('#message').append('<p>Congraduations! You have earned <strong>' + random + '</strong>. <br>' +'Please \
 		fill in the below form so that we can deliver the gift to you. Otherwise, you cannot get the gift as expected.</p>');
-	var form = '<form role="form" action="/" method="post" id="sendPrizeInfo"> \
-					<div class="row" id="name"> \
-                        <div class="col-xs-12 col-sm-6 col-md-6"> \
-                            <div class="form-group"> \
-                                <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name"> \
-                            </div> \
-                        </div> \
-                        <div class="col-xs-12 col-sm-6 col-md-6"> \
-                            <div class="form-group"> \
-                            <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name"> \
-                            </div> \
-                        </div> \
-                    </div> \
-                    <div class="form-group"> \
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Email Address"> \
-                    </div> \
-                    <div class="form-group"> \
-                        <input type="phone_number" name="phone_number" id="phone_number" class="form-control" placeholder="Phone Number"> \
-                    </div> \
-                    <div class="form-group"> \
-                        <input type="text" name="residence" id="residence" class="form-control" placeholder="Residence"> \
-                    </div> \
-                   	<div class="row"> \
-                    	<div class="col-xs-12 col-md-6"> \
-                        	<input type="submit" value="Send" class="btn btn-primary btn-block"> \
-                    	</div> \
-                    	<div class="col-xs-12 col-md-6"> \
-                        	<a href="/" class="btn btn-danger btn-block">Cancel</a> \
-                   		</div> \
-                	</div> \
-				</form>';
-	$('#result').append(form);
+	
 }
